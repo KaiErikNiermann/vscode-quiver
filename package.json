@@ -1,0 +1,81 @@
+{
+  "name": "vscode-quiver",
+  "displayName": "vscode-quiver",
+  "description": "Embed q.uiver directly inside VS Code.",
+  "version": "0.1.0",
+  "publisher": "local",
+  "license": "MIT",
+  "packageManager": "pnpm@10.14.0",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Visualization"
+  ],
+  "keywords": [
+    "q.uiver",
+    "tikzcd",
+    "diagrams"
+  ],
+  "activationEvents": [
+    "onCommand:vscode-quiver.openPanel"
+  ],
+  "main": "./dist/extension.js",
+  "files": [
+    "dist/**",
+    "vendor/**",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE",
+    "package.json"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "vscode-quiver.openPanel",
+        "title": "vscode-quiver: Open Panel"
+      },
+      {
+        "command": "vscode-quiver.resyncFromEditor",
+        "title": "vscode-quiver: Re-sync From Editor"
+      },
+      {
+        "command": "vscode-quiver.requestExportTikzcd",
+        "title": "vscode-quiver: Export tikzcd"
+      },
+      {
+        "command": "vscode-quiver.requestApplyToEditor",
+        "title": "vscode-quiver: Apply to Editor"
+      }
+    ]
+  },
+  "scripts": {
+    "build": "esbuild src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node",
+    "watch": "esbuild src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node --watch",
+    "lint": "pnpm lint:eslint && pnpm lint:types",
+    "lint:eslint": "eslint .",
+    "lint:types": "tsc --noEmit",
+    "test": "vitest run",
+    "prepare": "husky",
+    "package": "vsce package --no-dependencies --allow-unused-files-pattern --allow-missing-repository"
+  },
+  "dependencies": {
+    "ts-pattern": "^5.8.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^22.0.0",
+    "@types/vscode": "^1.85.0",
+    "@vscode/test-electron": "^2.5.2",
+    "@vscode/vsce": "^3.0.0",
+    "esbuild": "^0.25.0",
+    "eslint": "^10.0.2",
+    "eslint-plugin-security": "^4.0.0",
+    "eslint-plugin-sonarjs": "^4.0.0",
+    "eslint-plugin-unicorn": "^63.0.0",
+    "husky": "^9.1.7",
+    "typescript": "^5.7.0",
+    "typescript-eslint": "^8.56.1",
+    "vitest": "^3.2.4"
+  }
+}
