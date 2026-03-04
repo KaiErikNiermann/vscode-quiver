@@ -1,9 +1,9 @@
 {
   "name": "vscode-quiver",
   "displayName": "vscode-quiver",
-  "description": "Embed q.uiver directly inside VS Code.",
+  "description": "A minimal q.uiver webview extension for VS Code.",
   "version": "0.1.0",
-  "publisher": "local",
+  "publisher": "vscode-quiver",
   "license": "MIT",
   "packageManager": "pnpm@10.14.0",
   "engines": {
@@ -25,6 +25,7 @@
     "dist/**",
     "vendor/**",
     "README.md",
+    "MARKETPLACE.md",
     "CHANGELOG.md",
     "LICENSE",
     "package.json"

@@ -7,6 +7,9 @@ Scope is intentionally minimal:
 - Apply webview compatibility UI patches
 - Keep vendored q.uiver synced with upstream
 
+Command:
+- `vscode-quiver.openPanel`
+
 ## Development
 
 ```bash
