@@ -1,0 +1,8 @@
+{
+  "name": "q.uiver",
+  "upstream_repo": "https://github.com/varkor/quiver",
+  "pinned_ref": "eee8a987ce91525d24b1928b6e86547cf82df0cb",
+  "resolved_commit": "eee8a987ce91525d24b1928b6e86547cf82df0cb",
+  "resolved_commit_date": "2026-02-14T14:58:44+02:00",
+  "fetched_at_utc": "2026-02-25T01:38:10Z"
+}
