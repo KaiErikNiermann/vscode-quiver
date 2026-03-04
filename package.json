@@ -34,18 +34,6 @@
       {
         "command": "vscode-quiver.openPanel",
         "title": "vscode-quiver: Open Panel"
-      },
-      {
-        "command": "vscode-quiver.resyncFromEditor",
-        "title": "vscode-quiver: Re-sync From Editor"
-      },
-      {
-        "command": "vscode-quiver.requestExportTikzcd",
-        "title": "vscode-quiver: Export tikzcd"
-      },
-      {
-        "command": "vscode-quiver.requestApplyToEditor",
-        "title": "vscode-quiver: Apply to Editor"
       }
     ]
   },
