@@ -44,6 +44,7 @@
     "lint:eslint": "eslint .",
     "lint:types": "tsc --noEmit",
     "test": "vitest run",
+    "test:e2e:quiver": "node ./e2e/quiver-puppeteer-runner.cjs",
     "vendor:quiver": "bash scripts/vendor_quiver.sh && bash scripts/apply_quiver_patches.sh",
     "sync:quiver": "bash scripts/sync_quiver.sh",
     "prepare": "husky",
@@ -64,6 +65,7 @@
     "eslint-plugin-sonarjs": "^4.0.0",
     "eslint-plugin-unicorn": "^63.0.0",
     "husky": "^9.1.7",
+    "puppeteer-core": "^24.37.5",
     "typescript": "^5.7.0",
     "typescript-eslint": "^8.56.1",
     "vitest": "^3.2.4"
