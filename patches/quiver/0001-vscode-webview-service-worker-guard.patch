@@ -1,0 +1,16 @@
+--- a/vendor/quiver/src/index.html
++++ b/vendor/quiver/src/index.html
+@@ -47,8 +47,11 @@
+     <!-- Service worker -->
+     <script type="module">
+         import { Workbox } from "./Workbox/workbox-window.prod.mjs";
+-        if ("serviceWorker" in navigator) {
+-            new Workbox("service-worker.js").register();
++        const isVscodeWebview =
++            window.location.protocol === "vscode-webview:" ||
++            window.location.protocol === "vscode-webview-resource:";
++        if (!isVscodeWebview && "serviceWorker" in navigator) {
++            new Workbox("service-worker.js").register().catch(() => undefined);
+         }
+     </script>
+ </head>

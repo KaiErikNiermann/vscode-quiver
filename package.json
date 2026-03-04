@@ -44,6 +44,8 @@
     "lint:eslint": "eslint .",
     "lint:types": "tsc --noEmit",
     "test": "vitest run",
+    "vendor:quiver": "bash scripts/vendor_quiver.sh && bash scripts/apply_quiver_patches.sh",
+    "sync:quiver": "bash scripts/sync_quiver.sh",
     "prepare": "husky",
     "package": "vsce package --no-dependencies --allow-unused-files-pattern --allow-missing-repository"
   },
