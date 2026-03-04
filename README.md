@@ -20,8 +20,16 @@ pnpm lint
 
 `vendor/quiver` is copied from upstream q.uiver with lightweight webview-focused patches.
 
-To update:
+To update vendored assets and reapply local compatibility patches:
 
 ```bash
-bash scripts/vendor_quiver.sh
+pnpm vendor:quiver
 ```
+
+For full sync plus validation:
+
+```bash
+pnpm sync:quiver
+```
+
+See `docs/maintenance.md` for patch and sync policy.
