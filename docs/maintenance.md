@@ -23,6 +23,8 @@ Current local patches live in `patches/quiver/`:
 : add host bridge hooks and storage hardening used by the VS Code panel wrapper.
 3. `0003-vscode-webview-pointer-viewport-coordinates.patch`
 : align pointer drag coordinates with the visible viewport in VS Code webviews.
+4. `0004-vscode-webview-reconnect-preview-pointer-alignment.patch`
+: keep dragged endpoint previews aligned with the pointer while reconnecting freehand.
 
 ## Syncing with upstream q.uiver
 

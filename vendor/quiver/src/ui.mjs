@@ -8022,7 +8022,13 @@ export class Edge extends Cell {
             }
         }
 
-        UI.update_style(this.arrow, this.options);
+        // While reconnecting to free space, preserve endpoint-to-pointer alignment by not applying
+        // stylistic lane offsets to the preview. The stored edge options remain unchanged.
+        const style_options =
+            pointer_offset !== null && ui.mode.target === null
+                ? Object.assign({}, this.options, { offset: 0 })
+                : this.options;
+        UI.update_style(this.arrow, style_options);
         this.arrow.redraw();
 
         // Safari has a longstanding bug (https://bugs.webkit.org/show_bug.cgi?id=23113),
