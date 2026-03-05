@@ -2,7 +2,7 @@
   "name": "vscode-quiver",
   "displayName": "vscode-quiver",
   "description": "A minimal q.uiver webview extension for VS Code.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "publisher": "KaiErikNiermann",
   "license": "MIT",
   "icon": "icon.png",
