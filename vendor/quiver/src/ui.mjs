@@ -1456,6 +1456,10 @@ class UI {
             // Middle-click to pan: enter pan mode immediately.
             if (event.button === 1 && this.in_mode(UIMode.Default)) {
                 event.preventDefault();
+                // Blur any focused input so X11 primary-selection paste has no target.
+                if (document.activeElement instanceof HTMLElement) {
+                    document.activeElement.blur();
+                }
                 this.switch_mode(new UIMode.Pan(null));
                 this.focus_point.class_list.remove("revealed");
                 this.mode.origin = this.offset_from_event(event).sub(this.view);

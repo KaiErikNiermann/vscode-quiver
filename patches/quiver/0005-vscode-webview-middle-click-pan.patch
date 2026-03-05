@@ -1,19 +1,8 @@
 diff --git a/vendor/quiver/src/ui.mjs b/vendor/quiver/src/ui.mjs
-index 68f8cdc..098b370 100644
+index aa1ce0b..1c3d041 100644
 --- a/vendor/quiver/src/ui.mjs
 +++ b/vendor/quiver/src/ui.mjs
-@@ -1236,8 +1236,8 @@ class UI {
-             // Hide the focus point if it is visible.
-             this.focus_point.class_list.remove("revealed", "pending", "active");
- 
--            // If the user is holding shift, then we zoom, otherwise we pan.
--            if (event.shiftKey) {
-+            // If the user is holding shift or ctrl/cmd, then we zoom, otherwise we pan.
-+            if (event.shiftKey || event.ctrlKey || event.metaKey) {
-                 this.pan_to(this.view, clamp(
-                     CONSTANTS.MIN_ZOOM,
-                     this.scale - event.deltaY / 100,
-@@ -1443,6 +1443,15 @@ class UI {
+@@ -1443,10 +1443,23 @@ class UI {
  
          this.reposition_focus_point(Position.zero());
  
@@ -29,3 +18,11 @@ index 68f8cdc..098b370 100644
          this.element.listen(pointer_event("down"), (event) => {
              // Middle-click to pan: enter pan mode immediately.
              if (event.button === 1 && this.in_mode(UIMode.Default)) {
+                 event.preventDefault();
++                // Blur any focused input so X11 primary-selection paste has no target.
++                if (document.activeElement instanceof HTMLElement) {
++                    document.activeElement.blur();
++                }
+                 this.switch_mode(new UIMode.Pan(null));
+                 this.focus_point.class_list.remove("revealed");
+                 this.mode.origin = this.offset_from_event(event).sub(this.view);
