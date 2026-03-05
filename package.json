@@ -5,6 +5,7 @@
   "version": "0.1.0",
   "publisher": "vscode-quiver",
   "license": "MIT",
+  "icon": "icon.png",
   "packageManager": "pnpm@10.14.0",
   "engines": {
     "vscode": "^1.85.0"
@@ -18,7 +19,6 @@
     "diagrams"
   ],
   "activationEvents": [
-    "onCommand:vscode-quiver.openPanel"
   ],
   "main": "./dist/extension.js",
   "files": [
