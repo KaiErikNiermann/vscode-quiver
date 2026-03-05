@@ -1,21 +1,8 @@
 diff --git a/vendor/quiver/src/ui.mjs b/vendor/quiver/src/ui.mjs
-index c9320c5..aa1ce0b 100644
+index 68f8cdc..098b370 100644
 --- a/vendor/quiver/src/ui.mjs
 +++ b/vendor/quiver/src/ui.mjs
-@@ -1223,14 +1223,21 @@ class UI {
-                 return;
-             }
- 
-+            // Suppress scroll/zoom while actively middle-click panning so that
-+            // accidental scroll-wheel tilt (e.g. Logitech G502) doesn't interfere.
-+            if (this.in_mode(UIMode.Pan) && this.mode.key === null && this.mode.origin !== null) {
-+                event.preventDefault();
-+                return;
-+            }
-+
-             // We don't want to scroll the page while using the mouse wheel.
-             event.preventDefault();
- 
+@@ -1236,8 +1236,8 @@ class UI {
              // Hide the focus point if it is visible.
              this.focus_point.class_list.remove("revealed", "pending", "active");
  
@@ -26,3 +13,19 @@ index c9320c5..aa1ce0b 100644
                  this.pan_to(this.view, clamp(
                      CONSTANTS.MIN_ZOOM,
                      this.scale - event.deltaY / 100,
+@@ -1443,6 +1443,15 @@ class UI {
+ 
+         this.reposition_focus_point(Position.zero());
+ 
++        // Suppress middle-click defaults (X11 primary-selection paste and autoscroll).
++        for (const name of ["mousedown", "mouseup", "auxclick"]) {
++            this.element.listen(name, (event) => {
++                if (event.button === 1) {
++                    event.preventDefault();
++                }
++            });
++        }
++
+         this.element.listen(pointer_event("down"), (event) => {
+             // Middle-click to pan: enter pan mode immediately.
+             if (event.button === 1 && this.in_mode(UIMode.Default)) {

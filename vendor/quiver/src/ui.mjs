@@ -1443,6 +1443,15 @@ class UI {
 
         this.reposition_focus_point(Position.zero());
 
+        // Suppress middle-click defaults (X11 primary-selection paste and autoscroll).
+        for (const name of ["mousedown", "mouseup", "auxclick"]) {
+            this.element.listen(name, (event) => {
+                if (event.button === 1) {
+                    event.preventDefault();
+                }
+            });
+        }
+
         this.element.listen(pointer_event("down"), (event) => {
             // Middle-click to pan: enter pan mode immediately.
             if (event.button === 1 && this.in_mode(UIMode.Default)) {
