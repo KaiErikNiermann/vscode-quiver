@@ -10,6 +10,10 @@ Scope is intentionally minimal:
 Command:
 - `vscode-quiver.openPanel`
 
+## Why? 
+
+because
+
 ## Development
 
 ```bash
