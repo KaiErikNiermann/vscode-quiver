@@ -1236,8 +1236,8 @@ class UI {
             // Hide the focus point if it is visible.
             this.focus_point.class_list.remove("revealed", "pending", "active");
 
-            // If the user is holding shift, then we zoom, otherwise we pan.
-            if (event.shiftKey) {
+            // If the user is holding shift or ctrl/cmd, then we zoom, otherwise we pan.
+            if (event.shiftKey || event.ctrlKey || event.metaKey) {
                 this.pan_to(this.view, clamp(
                     CONSTANTS.MIN_ZOOM,
                     this.scale - event.deltaY / 100,

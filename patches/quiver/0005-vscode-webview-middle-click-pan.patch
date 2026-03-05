@@ -1,8 +1,8 @@
 diff --git a/vendor/quiver/src/ui.mjs b/vendor/quiver/src/ui.mjs
-index 151918f..68f8cdc 100644
+index c9320c5..aa1ce0b 100644
 --- a/vendor/quiver/src/ui.mjs
 +++ b/vendor/quiver/src/ui.mjs
-@@ -1223,6 +1223,13 @@ class UI {
+@@ -1223,14 +1223,21 @@ class UI {
                  return;
              }
  
@@ -16,28 +16,13 @@ index 151918f..68f8cdc 100644
              // We don't want to scroll the page while using the mouse wheel.
              event.preventDefault();
  
-@@ -1397,6 +1404,10 @@ class UI {
-         });
+             // Hide the focus point if it is visible.
+             this.focus_point.class_list.remove("revealed", "pending", "active");
  
-         document.addEventListener(pointer_event("up"), (event) => {
-+            // Middle-click release: exit pan mode.
-+            if (event.button === 1 && this.in_mode(UIMode.Pan) && this.mode.key === null) {
-+                this.switch_mode(UIMode.default);
-+            }
-             if (event.button === 0) {
-                 if (event.pointerType !== "touch") {
-                     if (this.in_mode(UIMode.Pan)) {
-@@ -1433,6 +1444,13 @@ class UI {
-         this.reposition_focus_point(Position.zero());
- 
-         this.element.listen(pointer_event("down"), (event) => {
-+            // Middle-click to pan: enter pan mode immediately.
-+            if (event.button === 1 && this.in_mode(UIMode.Default)) {
-+                event.preventDefault();
-+                this.switch_mode(new UIMode.Pan(null));
-+                this.focus_point.class_list.remove("revealed");
-+                this.mode.origin = this.offset_from_event(event).sub(this.view);
-+            }
-             if (event.button === 0) {
-                 // Usually, if `Alt` or `Control` have been held we will have already switched to
-                 // the Pan mode. However, if the window is not in focus, they will not have been
+-            // If the user is holding shift, then we zoom, otherwise we pan.
+-            if (event.shiftKey) {
++            // If the user is holding shift or ctrl/cmd, then we zoom, otherwise we pan.
++            if (event.shiftKey || event.ctrlKey || event.metaKey) {
+                 this.pan_to(this.view, clamp(
+                     CONSTANTS.MIN_ZOOM,
+                     this.scale - event.deltaY / 100,
