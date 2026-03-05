@@ -1269,7 +1269,13 @@ QuiverImportExport.base64 = new class extends QuiverImportExport {
     export(quiver, settings, options) {
         // Remove the query string and fragment identifier from the current URL and use that as a
         // base.
-        const URL_prefix = window.location.href.replace(/\?.*$/, "").replace(/#.*$/, "");
+        const URL_prefix = (() => {
+            const proto = window.location.protocol;
+            if (proto === "vscode-webview:" || proto === "vscode-webview-resource:") {
+                return "https://q.uiver.app/";
+            }
+            return window.location.href.replace(/\?.*$/, "").replace(/#.*$/, "");
+        })();
 
         if (quiver.is_empty()) {
             // No need to have an encoding of an empty quiver; we'll just use the URL directly.
