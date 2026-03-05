@@ -21,6 +21,8 @@ Current local patches live in `patches/quiver/`:
 : disable service-worker registration for VS Code webview protocols.
 2. `0002-vscode-webview-bridge.patch`
 : add host bridge hooks and storage hardening used by the VS Code panel wrapper.
+3. `0003-vscode-webview-pointer-viewport-coordinates.patch`
+: align pointer drag coordinates with the visible viewport in VS Code webviews.
 
 ## Syncing with upstream q.uiver
 

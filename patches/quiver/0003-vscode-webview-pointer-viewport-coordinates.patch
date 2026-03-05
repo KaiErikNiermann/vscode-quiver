@@ -1,0 +1,19 @@
+diff --git a/vendor/quiver/src/ui.mjs b/vendor/quiver/src/ui.mjs
+index 444dba7..efe74ab 100644
+--- a/vendor/quiver/src/ui.mjs
++++ b/vendor/quiver/src/ui.mjs
+@@ -2535,8 +2535,12 @@ class UI {
+     /// A helper method for getting an offset from an event.
+     offset_from_event(event) {
+         const scale = 2 ** this.scale;
+-        return new Offset(event.pageX, event.pageY)
+-            .sub(new Offset(document.body.offsetWidth / 2, document.body.offsetHeight / 2))
++        // We align pointer coordinates to the visible viewport, not document metrics. This keeps
++        // dragging aligned in embedded hosts (e.g. VS Code webviews) that inject fixed chrome.
++        const [pointer_x, pointer_y] = [event.clientX ?? event.pageX, event.clientY ?? event.pageY];
++        const [viewport_width, viewport_height] = [window.innerWidth, window.innerHeight];
++        return new Offset(pointer_x, pointer_y)
++            .sub(new Offset(viewport_width / 2, viewport_height / 2))
+             .div(scale)
+             .add(this.view);
+     }
