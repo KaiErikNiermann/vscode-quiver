@@ -1223,6 +1223,13 @@ class UI {
                 return;
             }
 
+            // Suppress scroll/zoom while actively middle-click panning so that
+            // accidental scroll-wheel tilt (e.g. Logitech G502) doesn't interfere.
+            if (this.in_mode(UIMode.Pan) && this.mode.key === null && this.mode.origin !== null) {
+                event.preventDefault();
+                return;
+            }
+
             // We don't want to scroll the page while using the mouse wheel.
             event.preventDefault();
 

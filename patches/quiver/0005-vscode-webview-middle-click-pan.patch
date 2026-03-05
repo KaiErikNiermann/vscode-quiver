@@ -1,8 +1,22 @@
 diff --git a/vendor/quiver/src/ui.mjs b/vendor/quiver/src/ui.mjs
-index 151918f..c9320c5 100644
+index 151918f..68f8cdc 100644
 --- a/vendor/quiver/src/ui.mjs
 +++ b/vendor/quiver/src/ui.mjs
-@@ -1397,6 +1397,10 @@ class UI {
+@@ -1223,6 +1223,13 @@ class UI {
+                 return;
+             }
+ 
++            // Suppress scroll/zoom while actively middle-click panning so that
++            // accidental scroll-wheel tilt (e.g. Logitech G502) doesn't interfere.
++            if (this.in_mode(UIMode.Pan) && this.mode.key === null && this.mode.origin !== null) {
++                event.preventDefault();
++                return;
++            }
++
+             // We don't want to scroll the page while using the mouse wheel.
+             event.preventDefault();
+ 
+@@ -1397,6 +1404,10 @@ class UI {
          });
  
          document.addEventListener(pointer_event("up"), (event) => {
@@ -13,7 +27,7 @@ index 151918f..c9320c5 100644
              if (event.button === 0) {
                  if (event.pointerType !== "touch") {
                      if (this.in_mode(UIMode.Pan)) {
-@@ -1433,6 +1437,13 @@ class UI {
+@@ -1433,6 +1444,13 @@ class UI {
          this.reposition_focus_point(Position.zero());
  
          this.element.listen(pointer_event("down"), (event) => {
