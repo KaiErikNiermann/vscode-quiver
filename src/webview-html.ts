@@ -52,7 +52,17 @@ export function createQuiverWebviewHtml(
       --vscode-quiver-toolbar-clearance: 40px;
       --vscode-quiver-node-foreground: #000000;
     }
+    body {
+      padding: 0 !important;
+    }
+    .container {
+      left: 0;
+      top: 0;
+    }
     .toolbar {
+      top: calc(16px + var(--vscode-quiver-toolbar-clearance));
+    }
+    a > .logo {
       top: calc(16px + var(--vscode-quiver-toolbar-clearance));
     }
     .ui > .tooltip {
