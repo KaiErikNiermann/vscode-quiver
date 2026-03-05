@@ -23,6 +23,7 @@
   "files": [
     "dist/**",
     "vendor/**",
+    "icon.png",
     "README.md",
     "MARKETPLACE.md",
     "CHANGELOG.md",
