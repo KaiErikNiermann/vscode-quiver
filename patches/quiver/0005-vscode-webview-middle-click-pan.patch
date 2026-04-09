@@ -1,8 +1,43 @@
 diff --git a/vendor/quiver/src/ui.mjs b/vendor/quiver/src/ui.mjs
-index 151918f..09d472f 100644
+index 151918f..1c3d041 100644
 --- a/vendor/quiver/src/ui.mjs
 +++ b/vendor/quiver/src/ui.mjs
-@@ -1432,7 +1432,27 @@ class UI {
+@@ -1223,14 +1223,21 @@ class UI {
+                 return;
+             }
+
++            // Suppress scroll/zoom while actively middle-click panning so that
++            // accidental scroll-wheel tilt (e.g. Logitech G502) doesn't interfere.
++            if (this.in_mode(UIMode.Pan) && this.mode.key === null && this.mode.origin !== null) {
++                event.preventDefault();
++                return;
++            }
++
+             // We don't want to scroll the page while using the mouse wheel.
+             event.preventDefault();
+
+             // Hide the focus point if it is visible.
+             this.focus_point.class_list.remove("revealed", "pending", "active");
+
+-            // If the user is holding shift, then we zoom, otherwise we pan.
+-            if (event.shiftKey) {
++            // If the user is holding shift or ctrl/cmd, then we zoom, otherwise we pan.
++            if (event.shiftKey || event.ctrlKey || event.metaKey) {
+                 this.pan_to(this.view, clamp(
+                     CONSTANTS.MIN_ZOOM,
+                     this.scale - event.deltaY / 100,
+@@ -1397,6 +1404,10 @@ class UI {
+         });
+
+         document.addEventListener(pointer_event("up"), (event) => {
++            // Middle-click release: exit pan mode.
++            if (event.button === 1 && this.in_mode(UIMode.Pan) && this.mode.key === null) {
++                this.switch_mode(UIMode.default);
++            }
+             if (event.button === 0) {
+                 if (event.pointerType !== "touch") {
+                     if (this.in_mode(UIMode.Pan)) {
+@@ -1432,7 +1443,27 @@ class UI {
 
          this.reposition_focus_point(Position.zero());
 

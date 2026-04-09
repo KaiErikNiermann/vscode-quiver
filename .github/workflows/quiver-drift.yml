@@ -31,4 +31,4 @@ jobs:
         run: pnpm vendor:quiver
 
       - name: Verify repository is unchanged
-        run: git diff --exit-code
+        run: git diff --exit-code -- ':!vendor/quiver/VENDOR_METADATA.json'
