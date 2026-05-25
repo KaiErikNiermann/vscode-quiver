@@ -21,6 +21,8 @@ updates:
       types:
         patterns:
           - "@types/*"
+        exclude-patterns:
+          - "@types/vscode"
 
   - package-ecosystem: github-actions
     directory: "/"
