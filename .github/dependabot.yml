@@ -11,6 +11,13 @@ updates:
     commit-message:
       prefix: chore
       include: scope
+    ignore:
+      # @types/vscode must stay <= engines.vscode (^1.85). Only allow patch
+      # bumps within 1.85.x; raise both together when bumping the VS Code floor.
+      - dependency-name: "@types/vscode"
+        update-types:
+          - "version-update:semver-minor"
+          - "version-update:semver-major"
     groups:
       eslint:
         patterns:
@@ -21,8 +28,6 @@ updates:
       types:
         patterns:
           - "@types/*"
-        exclude-patterns:
-          - "@types/vscode"
 
   - package-ecosystem: github-actions
     directory: "/"
