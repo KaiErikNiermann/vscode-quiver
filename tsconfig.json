@@ -16,6 +16,7 @@
     "forceConsistentCasingInFileNames": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
+    "types": ["node", "vscode"],
     "resolveJsonModule": true,
     "declaration": true,
     "declarationMap": true,
