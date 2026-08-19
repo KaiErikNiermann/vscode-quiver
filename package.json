@@ -56,19 +56,19 @@
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "@types/node": "^25.9.3",
+    "@types/node": "^26.1.2",
     "@types/vscode": "~1.85.0",
-    "@vscode/test-electron": "^3.0.0",
+    "@vscode/test-electron": "^3.1.0",
     "@vscode/vsce": "^3.9.2",
-    "esbuild": "^0.28.1",
-    "eslint": "^10.5.0",
+    "esbuild": "^0.28.2",
+    "eslint": "^10.8.0",
     "eslint-plugin-security": "^4.0.1",
-    "eslint-plugin-sonarjs": "^4.0.3",
-    "eslint-plugin-unicorn": "^66.0.0",
+    "eslint-plugin-sonarjs": "^4.2.0",
+    "eslint-plugin-unicorn": "^72.0.0",
     "husky": "^9.1.7",
-    "puppeteer-core": "^25.1.0",
+    "puppeteer-core": "^25.7.0",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.61.0",
-    "vitest": "^4.1.8"
+    "typescript-eslint": "^8.65.0",
+    "vitest": "^4.1.10"
   }
 }
