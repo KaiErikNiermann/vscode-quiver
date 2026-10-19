@@ -52,7 +52,7 @@
     "package": "vsce package --no-dependencies --allow-unused-files-pattern --allow-missing-repository"
   },
   "dependencies": {
-    "ts-pattern": "^5.8.0"
+    "ts-pattern": "^5.9.2"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
@@ -66,9 +66,9 @@
     "eslint-plugin-sonarjs": "^4.2.2",
     "eslint-plugin-unicorn": "^77.0.0",
     "husky": "^9.1.7",
-    "puppeteer-core": "^25.13.0",
+    "puppeteer-core": "^25.14.0",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.71.1",
-    "vitest": "^5.0.3"
+    "vitest": "^5.0.5"
   }
 }
